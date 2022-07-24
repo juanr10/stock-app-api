@@ -25,4 +25,11 @@ class ProductsStockTest extends TestCase
                 'data' =>  $product->stock->quantity
             ]);
     }
+
+    /** @test */
+    public function can_not_get_the_stock_from_a_non_existent_product()
+    {
+        $this->json('GET', 'api/products/1/stock', ['Accept' => 'application/json'])
+            ->assertStatus(404);
+    }
 }
