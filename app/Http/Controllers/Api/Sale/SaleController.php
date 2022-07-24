@@ -9,5 +9,10 @@ use App\Http\Controllers\Controller;
 
 class SaleController extends Controller
 {
-    //
+    public function store(SaleRequest $request)
+    {
+        return response()->json([
+            'data' => Sale::create($request->all())
+        ], 201);
+    }
 }
