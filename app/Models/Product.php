@@ -24,4 +24,9 @@ class Product extends Model
     {
         return date('d-m-Y H:i:s', strtotime($this->attributes['updated_at']));
     }
+
+    public function stock()
+    {
+        return $this->hasOne(ProductsStock::class);
+    }
 }

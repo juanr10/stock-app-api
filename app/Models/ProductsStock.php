@@ -17,4 +17,9 @@ class ProductsStock extends Model
     {
         return date('d-m-Y H:i:s', strtotime($this->attributes['updated_at']));
     }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }
