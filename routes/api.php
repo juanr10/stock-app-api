@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Sale\SaleController;
 use App\Http\Controllers\Api\Product\ProductController;
 use App\Http\Controllers\Api\ProductsStock\ProductsStockController;
 
@@ -34,3 +35,8 @@ Route::get(
     'products/stock',
     [ProductsStockController::class, 'getAllProductsWithStock']
 )->name('api.products.stock');
+
+Route::post(
+    'sales',
+    [SaleController::class, 'store']
+)->name('api.sales.store');
