@@ -8,5 +8,13 @@ use App\Http\Controllers\Controller;
 
 class ProductsStockController extends Controller
 {
-    //
+    public function getProductStock()
+    {
+        //
+    }
+
+    public function getAllProductsWithStock()
+    {
+        //
+    }
 }
