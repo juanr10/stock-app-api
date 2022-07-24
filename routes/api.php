@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Product\ProductController;
+use App\Http\Controllers\Api\ProductsStock\ProductsStockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,13 @@ Route::get(
     'products',
     [ProductController::class, 'getProducts']
 )->name('api.products.index');
+
+Route::get(
+    'products/{product_id}/stock',
+    [ProductsStockController::class, 'getProductStock']
+)->name('api.product.stock');
+
+Route::get(
+    'products/stock',
+    [ProductsStockController::class, 'getAllProductsWithStock']
+)->name('api.products.stock');
