@@ -8,9 +8,13 @@ use App\Http\Controllers\Controller;
 
 class ProductsStockController extends Controller
 {
-    public function getProductStock()
+    public function getProductStock($product_id)
     {
-        //
+        $product = Product::findOrFail($product_id);
+
+        return response()->json([
+            'data' => $product->stock->quantity
+        ]);
     }
 
     public function getAllProductsWithStock()
