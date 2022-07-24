@@ -10,5 +10,8 @@ class ProductController extends Controller
 {
     public function getProducts()
     {
+        return response()->json([
+            'data' => Product::all()
+        ]);
     }
 }
