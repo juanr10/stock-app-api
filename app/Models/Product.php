@@ -30,4 +30,9 @@ class Product extends Model
     {
         return $this->hasOne(ProductsStock::class);
     }
+
+    public function sales()
+    {
+        return $this->hasMany(Sale::class, 'product_id');
+    }
 }
