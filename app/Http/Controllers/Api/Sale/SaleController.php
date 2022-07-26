@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api\Sale;
 
 use App\Models\Sale;
-use App\Http\Requests\SaleRequest;
+use App\Http\Requests\SaleStoreRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Application\ProductsStock\UpdateStock;
 class SaleController extends Controller
 {
-    public function store(SaleRequest $request)
+    public function store(SaleStoreRequest $request)
     {
         $statusCode = 500;
         $response = null;
