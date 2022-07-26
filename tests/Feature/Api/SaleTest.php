@@ -46,7 +46,7 @@ class SaleTest extends TestCase
     }
 
     /** @test */
-    public function can_not_store_a_sale_if_the_product_not_exists()
+    public function cannot_store_a_sale_if_the_product_not_exists()
     {
         $notExistentProduct = (object) [
             'id' => 999,
@@ -80,7 +80,7 @@ class SaleTest extends TestCase
     }
 
     /** @test */
-    public function can_not_store_a_sale_if_the_client_not_exists()
+    public function cannot_store_a_sale_if_the_client_not_exists()
     {
         $product = Product::factory()->create();
 
@@ -112,7 +112,7 @@ class SaleTest extends TestCase
     }
 
     /** @test */
-    public function can_not_store_a_sale_if_the_quantity_is_null()
+    public function cannot_store_a_sale_if_the_quantity_is_null()
     {
         $product = Product::factory()->create();
         $client = Client::factory()->create();
@@ -138,7 +138,7 @@ class SaleTest extends TestCase
     }
 
     /** @test */
-    public function can_not_store_a_sale_if_the_quantity_is_not_numeric()
+    public function cannot_store_a_sale_if_the_quantity_is_not_numeric()
     {
         $product = Product::factory()->create();
         $client = Client::factory()->create();
@@ -164,7 +164,7 @@ class SaleTest extends TestCase
     }
 
     /** @test */
-    public function can_not_store_a_sale_if_the_price_is_null()
+    public function cannot_store_a_sale_if_the_price_is_null()
     {
         $product = Product::factory()->create();
         $client = Client::factory()->create();
@@ -190,7 +190,7 @@ class SaleTest extends TestCase
     }
 
     /** @test */
-    public function can_not_store_a_sale_if_the_price_is_not_numeric()
+    public function cannot_store_a_sale_if_the_price_is_not_numeric()
     {
         $product = Product::factory()->create();
         $client = Client::factory()->create();
@@ -238,6 +238,6 @@ class SaleTest extends TestCase
         //Refresh product data
         $product->refresh();
 
-        $this->assertEquals($product->stock->quantity , $initialProductStock - $newSale->quantity);
+        $this->assertEquals($product->stock->quantity, $initialProductStock - $newSale->quantity);
     }
 }
