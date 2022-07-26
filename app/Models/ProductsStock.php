@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ProductsStock extends Model
 {
@@ -13,9 +14,11 @@ class ProductsStock extends Model
 
     protected $hidden = ['id', 'created_at'];
 
-    public function getUpdatedAtAttribute()
+    protected $dates = ['created_at', 'updated_at'];
+
+    protected function serializeDate(DateTimeInterface $date)
     {
-        return date('d-m-Y H:i:s', strtotime($this->attributes['updated_at']));
+        return $date->format('Y-m-d H:i:s');
     }
 
     public function product()
