@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Sale\SaleController;
 use App\Http\Controllers\Api\Product\ProductController;
+use App\Http\Controllers\Api\Purchase\PurchaseController;
 use App\Http\Controllers\Api\ProductsStock\ProductsStockController;
 
 /*
@@ -40,3 +40,8 @@ Route::post(
     'sales',
     [SaleController::class, 'store']
 )->name('api.sales.store');
+
+Route::post(
+    'purchases',
+    [PurchaseController::class, 'store']
+)->name('api.purchases.store');
