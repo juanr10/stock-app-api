@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -15,18 +16,28 @@ class Product extends Model
         'price' => 'float',
     ];
 
-    public function getCreatedAtAttribute()
-    {
-        return date('d-m-Y H:i:s', strtotime($this->attributes['created_at']));
-    }
+    protected $dates = [
+        'created_at',
+        'updated_at'
+    ];
 
-    public function getUpdatedAtAttribute()
+    protected function serializeDate(DateTimeInterface $date)
     {
-        return date('d-m-Y H:i:s', strtotime($this->attributes['updated_at']));
+        return $date->format('Y-m-d H:i:s');
     }
 
     public function stock()
     {
         return $this->hasOne(ProductsStock::class);
+    }
+
+    public function sales()
+    {
+        return $this->hasMany(Sale::class, 'product_id');
+    }
+
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class, 'product_id');
     }
 }
