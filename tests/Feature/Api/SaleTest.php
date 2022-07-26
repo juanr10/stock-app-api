@@ -214,4 +214,30 @@ class SaleTest extends TestCase
             $newSale->toArray()
         );
     }
+
+    /** @test */
+    public function check_if_product_stock_decrease_when_a_sale_is_created()
+    {
+        $product = Product::factory()->create();
+        $initialProductStock = $product->stock->quantity;
+
+        $client = Client::factory()->create();
+
+        $newSale = Sale::factory()->make([
+            'product_id' => $product->id,
+            'client_id' => $client->id,
+            'quantity' => 3,
+            'price' => 3 * $product->price
+        ]);
+
+        $this->postJson(
+            route('api.sales.store'),
+            $newSale->toArray()
+        );
+
+        //Refresh product data
+        $product->refresh();
+
+        $this->assertEquals($product->stock->quantity , $initialProductStock - $newSale->quantity);
+    }
 }
